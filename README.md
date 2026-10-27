@@ -1,6 +1,6 @@
-### Maimoona N (@MonaRose1)
+# Maimoona N
 
-**Technical writer for developer tools and AI products.** I build the software, then write the documentation it deserves: API references developers can copy and run, product guides that survive real support tickets, and doc reviews that find what the README got wrong.
+**Technical writer for developer tools and AI products.** GitHub: [@MonaRose1](https://github.com/MonaRose1). I build the software, then write the documentation it deserves: API references developers can copy and run, product guides that survive real support tickets, and doc reviews that find what the README got wrong.
 
 I came to writing from engineering. A dozen shipped applications, mostly MERN, with a FastAPI and ONNX service behind the AI features. Every sample in this repo was written against source code I can point you to, not a fictional product.
 
@@ -54,7 +54,7 @@ Reading code is not a side skill for me, it is the method. If the answer is in `
 
 Available for contract and full-time technical writing roles, remote, UTC+5. I write developer-facing and end-user documentation, build docs sites, and clean up documentation debt in existing repositories.
 
-- Email: monadevdizayn@gmail.com
+- Email: [monadevdizayn@gmail.com](mailto:monadevdizayn@gmail.com)
 - Samples and process: this repository, or the [documentation site](docs/index.md)
 - Code I have written and documented: [InViewAI platform](https://github.com/MonaRose1/InViewAI_Ai-powered_interview_platform) · [Gaze analysis service](https://github.com/MonaRose1/InViewAI_API) · [Mafia](https://github.com/MonaRose1/Mafia)
 

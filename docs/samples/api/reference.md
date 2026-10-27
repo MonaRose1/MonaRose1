@@ -22,7 +22,7 @@ Sessions are held in process memory. Restarting the service discards every sessi
 
 Returns liveness and whether the ONNX model artifact loaded at startup.
 
-**Response fields**
+### Response fields
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -32,15 +32,15 @@ Returns liveness and whether the ONNX model artifact loaded at startup.
 
 **Note:** `model_loaded: false` does not fail any request. Frame analysis continues with constant angles instead of model output. See the [troubleshooting entry](errors.md#health-reports-model_loaded-false).
 
-**Example**
+### Example
 
 ```bash
 curl -s http://localhost:8002/health
-```
+```text
 
 ```json
 { "status": "ok", "timestamp": "2026-01-01T12:00:00.123456", "model_loaded": true }
-```
+```text
 
 ---
 
@@ -48,14 +48,14 @@ curl -s http://localhost:8002/health
 
 Analyzes a single frame. If the session does not exist, it is created. Metrics are recomputed at most once every `FRAME_SAMPLING_INTERVAL_S` seconds (default `3.0`); calls inside that window return the previous metrics unchanged.
 
-**Request body**
+### Request body
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `image_data` | string | Yes | Base64-encoded image, either raw base64 or a `data:image/...;base64,` URI |
 | `session_id` | string | Yes | Session to attribute the frame to. Any string; created on first use |
 
-**Response body**
+### Response body
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -66,14 +66,14 @@ Analyzes a single frame. If the session does not exist, it is created. Metrics a
 | `face_detected` | boolean | `false` when MediaPipe found no face in the frame |
 | `timestamp` | string | ISO 8601 local time |
 
-**Behavior to know before integrating**
+### Behavior to know before integrating
 
 - **The returned angles are constants.** Both the face-found and no-face branches pass fixed values (`pitch: 0.0`, `yaw: 0.0`, `ear: 0.3`) into the metrics function. The ONNX model is loaded at startup but its output is not used by this endpoint. Do not build UI that presents these angles as measurements.
 - **No face is not an error.** The endpoint returns `200` with `face_detected: false` and the metrics from the previous sample.
 - **Frames are sampled, not counted.** Only one call per sampling window advances `total_frames_processed`. Sending 15 frames per second does not produce 15 samples per second.
 - **Session state is unbounded.** `SESSION_TTL_S` is read from the environment but no expiry is enforced, so sessions persist until the process restarts.
 
-**Status codes**
+### Status codes
 
 | Code | Condition | Body |
 | --- | --- | --- |
@@ -81,13 +81,13 @@ Analyzes a single frame. If the session does not exist, it is created. Metrics a
 | `400` | `image_data` is not decodable as an image | `{"detail": "Invalid image"}` |
 | `422` | Body is missing a required field or has the wrong type | FastAPI validation error |
 
-**Example**
+### Example
 
 ```bash
 curl -s -X POST http://localhost:8002/api/analyze-frame \
   -H "Content-Type: application/json" \
   -d '{"image_data": "data:image/jpeg;base64,/9j/4AAQSkZJRg...", "session_id": "candidate-42"}'
-```
+```text
 
 ```json
 {
@@ -102,7 +102,7 @@ curl -s -X POST http://localhost:8002/api/analyze-frame \
   "face_detected": true,
   "timestamp": "2026-01-01T12:00:03.456789"
 }
-```
+```text
 
 ---
 
@@ -110,13 +110,13 @@ curl -s -X POST http://localhost:8002/api/analyze-frame \
 
 Returns the last computed metrics for a session and how many samples it has collected.
 
-**Path parameters**
+### Path parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `session_id` | string | Session created by a previous frame call or socket connection |
 
-**Response body**
+### Response body
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -125,7 +125,7 @@ Returns the last computed metrics for a session and how many samples it has coll
 | `total_frames_processed` | integer | Number of samples taken, not number of frames sent |
 | `timestamp` | string | ISO 8601 local time |
 
-**Status codes**
+### Status codes
 
 | Code | Condition | Body |
 | --- | --- | --- |
@@ -140,7 +140,7 @@ A `404` here is usually a restarted service, not a wrong identifier.
 
 Accepts an interview question and answer and returns a scored evaluation object.
 
-**Request body**
+### Request body
 
 | Field | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -148,7 +148,7 @@ Accepts an interview question and answer and returns a scored evaluation object.
 | `answer` | string | Yes | | The candidate's answer |
 | `job_role` | string | No | `Software Engineer` | Role to evaluate against |
 
-**Response body**
+### Response body
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -172,15 +172,15 @@ Accepts an interview question and answer and returns a scored evaluation object.
 
 Persistent socket for continuous analysis. Same session model as the HTTP endpoint.
 
-**Client to server**
+### Client to server
 
 ```json
 { "type": "analyze_frame", "image_data": "<base64 or data URI>" }
-```
+```text
 
 Messages with any other `type` are ignored without a response.
 
-**Server to client**
+### Server to client
 
 ```json
 {
@@ -190,21 +190,21 @@ Messages with any other `type` are ignored without a response.
   "behavior_analysis": { "avg_gaze_deviation": 0.0, "eye_contact_ratio": 1.0, "blink_rate": 0.0, "engagement_score": 0.7 },
   "timestamp": "2026-01-01T12:00:03.456789"
 }
-```
+```text
 
-**Behavior to know**
+### Behavior to know
 
 - A frame with no detectable face produces no message at all. A client waiting on a reply per frame will stall; use the HTTP endpoint if you need a response per frame.
 - A frame that fails to decode is also skipped silently.
 - The socket inherits the same constant-angle behavior as the HTTP endpoint.
 
-**Example**
+### Example
 
 ```bash
 websocat ws://localhost:8002/ws/analyze/demo-1
 # then paste:
 # {"type": "analyze_frame", "image_data": "<base64>"}
-```
+```text
 
 ---
 

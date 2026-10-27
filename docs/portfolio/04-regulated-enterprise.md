@@ -37,11 +37,11 @@ Two things the evidence changed about the documentation:
 
 Enterprise documentation is a set of answers, not a narrative. Structure follows the questionnaire:
 
-```
+```text
 Data handling        what is collected, where it goes, how long, who is it shared with
 Security and access  authentication, authorization matrix, encryption, logging, incidents
 Accessibility        conformance statement, known issues, remediation plan, testing method
-```
+```text
 
 Each page answers in a table where the reader expects a sentence, and gives a paragraph only for a decision that needs justification.
 

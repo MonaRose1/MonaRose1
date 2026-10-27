@@ -34,7 +34,7 @@ What the platform collects, where it goes, how long it is kept, and who can see 
 
 ## Data flows
 
-```
+```text
 Candidate browser
    |  HTTPS, JSON with Bearer token
    v
@@ -45,7 +45,7 @@ Platform API (Express)  --MongoDB-->  Database (users, jobs, interviews, notes, 
    +--HTTPS--> Analysis service (FastAPI) --in memory--> behavior metrics, discarded
    |
    +--SMTP--> Email provider (interview invitations, status updates)
-```
+```text
 
 Frames travel from the candidate's browser to the platform and then to the analysis service. They are not written to storage in any step of that path.
 

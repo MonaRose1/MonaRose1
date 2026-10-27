@@ -19,7 +19,7 @@ The artifact path did not resolve. The default in code is `resnet18_gazevec_best
 
 ```bash
 export ONNX_MODEL_PATH=resnet18_gazevec_best.onnx
-```
+```text
 
 The service runs either way, but nothing measures gaze until the path is right. Even with the model loaded, the HTTP and socket endpoints currently feed constant angles into the metrics; see the note in [the reference](reference.md#post-apianalyze-frame).
 
@@ -31,7 +31,7 @@ Set the platform backend's variable to the reachable address:
 
 ```bash
 export AI_SERVICE_URL=http://<gaze-service-host>:8002
-```
+```text
 
 ### Every metric is identical between calls
 

@@ -46,7 +46,7 @@ Six problems produce almost every support message. Each one names the symptom, t
 npm run clean
 npm run build
 npm run preview
-```
+```text
 
 ## The dev server starts on the wrong port
 

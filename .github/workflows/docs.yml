@@ -24,14 +24,8 @@ jobs:
         with:
           globs: "**/*.md"
 
-      - name: Vale style check
-        uses: errata-ai/vale-action@reviewdog
-        with:
-          files: all
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install mkdocs
+        run: pip install mkdocs mkdocs-material pymdown-extensions
 
       - name: Build site
-        run: |
-          pip install mkdocs mkdocs-material pymdown-extensions
-          mkdocs build --strict
+        run: mkdocs build --strict

@@ -32,11 +32,11 @@ Facts collected from source, each with the line that proves it:
 
 ## Step 3: Structure
 
-```
+```text
 Quickstart      install, configure, run, one working request
 Reference       endpoints table, schemas, responses, status codes, configuration
 Errors          every failure a reader can hit, cause, fix
-```
+```text
 
 Reference pages are scanned, not read, so the endpoint table comes first and each endpoint repeats the same six fields: method and path, purpose, request, response, status codes, notes. Consistency beats prose in reference material.
 

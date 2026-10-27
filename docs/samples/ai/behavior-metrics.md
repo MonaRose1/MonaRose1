@@ -6,9 +6,9 @@ Four numbers come out of a session. This page defines each one, in the order the
 
 Metrics never recompute on every frame. A sample is taken only when at least `FRAME_SAMPLING_INTERVAL_S` seconds have passed since the last one, default `3.0`.
 
-```
+```text
 if now - last_sample_time < 3.0: return previous metrics
-```
+```text
 
 Consequences for anyone reading the numbers:
 
@@ -20,9 +20,9 @@ Consequences for anyone reading the numbers:
 
 An eye-aspect-ratio (EAR) below `EAR_THRESHOLD` (default `0.25`) counts as one blink, with a 0.25-second debounce so a single blink is not counted repeatedly.
 
-```
+```text
 if ear < 0.25 and now - last_blink_time > 0.25: blink_count += 1
-```
+```text
 
 **Note:** Both frame paths currently pass a fixed `ear = 0.3`, which is above the threshold, so the count stays at zero. The mechanism is implemented; the input is not.
 
@@ -30,11 +30,11 @@ if ear < 0.25 and now - last_blink_time > 0.25: blink_count += 1
 
 The share of samples in which the gaze deviation stayed inside `GAZE_THRESHOLD_DEG` (default `15.0°`).
 
-```
+```text
 deviation = sqrt(pitch² + yaw²)
 if deviation < 15.0: engaged_frames += 1
 eye_contact_ratio = engaged_frames / max(1, total_frames)
-```
+```text
 
 | Property | Value |
 | --- | --- |
@@ -49,9 +49,9 @@ There is no smoothing on this metric. A single long look away lowers the ratio p
 
 The mean angular distance from the camera axis across retained samples.
 
-```
+```text
 avg_gaze_deviation = mean(sqrt(pitch² + yaw²)) over retained samples
-```
+```text
 
 | Property | Value |
 | --- | --- |
@@ -66,10 +66,10 @@ Average deviation is the most interpretable of the four because it stays in the 
 
 A weighted combination of eye contact and blink rate, scaled to `0.0` to `1.0`.
 
-```
+```text
 blink_score      = 1 - min(1, |blink_rate - 0.25| / 0.25)
 engagement_score = 0.7 × eye_contact_ratio + 0.3 × blink_score
-```
+```text
 
 The shape of `blink_score` deserves a sentence: it peaks at a rate of `0.25` and falls to zero at `0.0` or `0.5`. It rewards a "normal" blink frequency and penalizes both staring and blinking often. That is a design opinion, not a measurement, and it should be labeled as one wherever the score appears.
 

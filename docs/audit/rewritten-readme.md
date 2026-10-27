@@ -27,7 +27,7 @@ This README replaces the package glossary that was here. It covers what the prod
 
 Three services, two data stores, one socket layer:
 
-```
+```text
 Browser (React, Vite)
    |  HTTPS, JWT Bearer
    v
@@ -38,7 +38,7 @@ Platform API (Express, :5000)   <--MongoDB-->  app database
    +--HTTP--> Analysis service (FastAPI, :8002)  [in-memory sessions]
    |
    +--Socket.IO--> live interview events
-```
+```text
 
 - **Platform API**: authentication, jobs, applications, interviews, notifications, reports. Port `5000`.
 - **Analysis service**: frame and answer analysis over HTTP and WebSocket. Port `8002`, separate deployment, public repo `InViewAI_API`.
@@ -66,7 +66,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export ONNX_MODEL_PATH=resnet18_gazevec_best.onnx
 python main.py
-```
+```text
 
 It listens on `:8002`. `GET /health` reports `"model_loaded": true` when the model artifact loaded. See that repository's reference for endpoint detail and current limitations.
 
@@ -77,7 +77,7 @@ cd backend
 npm install
 cp .env.example .env   # then fill in the values below
 npm run dev
-```
+```text
 
 It listens on `:5000`. On startup it connects to MongoDB; a failed connection exits the process with a database error rather than retrying.
 
@@ -88,7 +88,7 @@ cd frontend
 npm install
 cp .env.example .env   # optional; defaults work with the dev proxy
 npm run dev
-```
+```text
 
 Open <http://localhost:5173>. The dev server proxies `/api` and `/socket.io` to `http://127.0.0.1:5000`, so the default `VITE_API_URL=/api` is correct for local work.
 
@@ -128,13 +128,13 @@ Documented in the service repository. The variables that matter first are `PORT`
 cd backend && npm run test    # Jest, API-level tests
 cd frontend && npm run test   # Jest with Testing Library
 cd frontend && npm run lint   # ESLint
-```
+```text
 
 `tests/InViewAI_Testing_Report.md` records the last full pass, what it covered and what it did not. There is no end-to-end suite and no test for the AI output, so treat analysis behavior as untested.
 
 ## Project structure
 
-```
+```text
 backend/
   config/        database, Cloudinary
   controllers/   request handlers
@@ -150,7 +150,7 @@ frontend/
   src/services/   API clients
   vite.config.js  dev proxy to :5000
 tests/            testing report
-```
+```text
 
 ## Troubleshooting
 

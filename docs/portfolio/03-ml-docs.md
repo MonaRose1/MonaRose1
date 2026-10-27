@@ -36,11 +36,11 @@ That second column is the model card. A capability section with no evaluation se
 
 Model cards have a conventional shape, and convention is the point: reviewers scan for known sections.
 
-```
+```text
 Model card          purpose, inputs, outputs, training, limits, ethical considerations
 Behavior metrics    each published number, its formula, its range, its failure mode
 Evaluation notes    what the test suite proves, how to build a real eval, what is missing
-```
+```text
 
 The metrics page exists because the API returns derived numbers, not raw angles. An integrator who reads only the endpoint reference will assume `engagement_score` is a model output. It is a hand-written weighted sum, and the weights belong in the documentation.
 

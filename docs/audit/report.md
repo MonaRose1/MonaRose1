@@ -21,7 +21,7 @@
 **Quoted:**
 
 > ### 18. GH Pages ... **Command**: `npm run deploy`
-
+>
 > - `npm run deploy` - Deploy to GitHub Pages
 
 **Evidence:** `frontend/package.json` scripts are `dev`, `tunnel`, `build`, `lint`, `preview`, `test`. No `deploy`. `gh-pages` is not in dependencies or devDependencies.
@@ -138,7 +138,7 @@ while `backend/.env` is committed to the repository.
 
 **Quoted:** the first line
 
-> # InViewAI - Packages and Their Usage
+> **InViewAI - Packages and Their Usage**
 
 **Evidence:** there is no description of the product, its users, its architecture, a screenshot, a license, or a contribution path.
 

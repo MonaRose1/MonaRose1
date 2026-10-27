@@ -2,6 +2,7 @@ site_name: Technical writing portfolio
 site_description: Documentation samples for developer tools, SaaS, AI and enterprise products
 site_author: Maimoona N
 docs_dir: docs
+site_url: https://monarose1.github.io/MonaRose1/
 
 theme:
   name: material

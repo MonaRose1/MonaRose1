@@ -15,7 +15,7 @@ Eight players, one room code, nothing for them to install. This page takes about
 git clone https://github.com/MonaRose1/Mafia.git
 cd Mafia
 npm install
-```
+```text
 
 ## 2. Point the app at your Firebase project
 
@@ -30,19 +30,19 @@ The app reads its Firebase configuration from `firebase-applet-config.json` in t
   "messagingSenderId": "<SENDER_ID>",
   "appId": "<APP_ID>"
 }
-```
+```text
 
 Then publish the security rules so the app can read and write rooms:
 
 ```bash
 npx firebase-tools deploy --only firestore:rules --project <PROJECT_ID>
-```
+```text
 
 ## 3. Create your environment file
 
 ```bash
 cp .env.example .env
-```
+```text
 
 Set the values you need for local work:
 
@@ -59,7 +59,7 @@ Set the values you need for local work:
 
 ```bash
 npm run dev
-```
+```text
 
 Open <http://localhost:3000>. The dev server is configured for port 3000 and accepts connections from your network, so phones on the same Wi-Fi can join with your machine's IP address.
 

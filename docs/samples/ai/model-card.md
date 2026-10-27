@@ -39,13 +39,13 @@ A positive yaw means the face is turned to one side of the camera axis, a positi
 
 Estimating whether a person is looking toward the camera during a remote interview, aggregated over a session into a summary metric.
 
-**Reasonable uses**
+### Reasonable uses
 
 - A live indicator that helps an interviewer notice when a candidate is looking away
 - A session-level summary an interviewer reads alongside their own notes
 - Research and demonstration in a controlled setting
 
-**Out of scope**
+### Out of scope
 
 - Any automated hiring decision, score or rejection
 - Identity verification, emotion detection, attention measurement for assessment
