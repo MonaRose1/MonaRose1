@@ -1,0 +1,12 @@
+extends: existence
+message: "Be specific. '%s' weakens the sentence."
+level: suggestion
+ignorecase: true
+tokens:
+  - simply
+  - easily
+  - obviously
+  - clearly
+  - of course
+  - very
+  - quite

@@ -1,0 +1,69 @@
+site_name: Technical writing portfolio
+site_description: Documentation samples for developer tools, SaaS, AI and enterprise products
+site_author: Maimoona N
+docs_dir: docs
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Process: writing-process.md
+  - Style guide: style-guide.md
+  - Portfolio:
+      - API reference sample: portfolio/01-api-reference.md
+      - Product docs sample: portfolio/02-product-docs.md
+      - AI/ML documentation: portfolio/03-ml-docs.md
+      - Enterprise documentation: portfolio/04-regulated-enterprise.md
+      - Documentation review: portfolio/05-docs-review.md
+  - Samples:
+      - API:
+          - Quickstart: samples/api/quickstart.md
+          - Reference: samples/api/reference.md
+          - Errors: samples/api/errors.md
+      - SaaS:
+          - Quickstart: samples/saas/quickstart.md
+          - Run a game: samples/saas/how-to-run-a-game.md
+          - Troubleshooting: samples/saas/troubleshooting.md
+      - AI/ML:
+          - Model card: samples/ai/model-card.md
+          - Behavior metrics: samples/ai/behavior-metrics.md
+          - Evaluation notes: samples/ai/evaluation-notes.md
+      - Enterprise:
+          - Data handling: samples/enterprise/data-handling.md
+          - Security and access: samples/enterprise/security-and-access.md
+          - Accessibility: samples/enterprise/accessibility.md
+  - Review:
+      - Report: audit/report.md
+      - Rewritten README: audit/rewritten-readme.md
+  - Apply:
+      - Resume material: apply/resume-bullets.md
+      - Cover letter: apply/cover-letter.md
+      - Interview prep: apply/interview-prep.md

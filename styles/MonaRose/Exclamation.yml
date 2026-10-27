@@ -1,0 +1,6 @@
+extends: existence
+message: "Remove the exclamation mark. Documentation is not a brochure."
+level: warning
+nonword: true
+tokens:
+  - '!'
